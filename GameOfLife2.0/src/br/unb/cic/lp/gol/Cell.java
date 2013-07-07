@@ -1,5 +1,8 @@
 package br.unb.cic.lp.gol;
 
+/**
+ * cell
+ */
 public class Cell {
 	private boolean alive = false;
 
