@@ -77,13 +77,13 @@ public abstract class RuleGame extends Collegue implements StrategyRule, Subject
 		}
 		
 		for (Cell cell : mustRevive) {
-			cell.revive();
-			notifyObservers(CellState.REVIVE);
+			cell.reviveCell();
+			notifyObservers(CellState.REVIVED);
 		}
 		
 		for (Cell cell : mustKill) {
-			cell.kill();
-			notifyObservers(CellState.KILL);
+			cell.killCell();
+			notifyObservers(CellState.DEAD);
 		}
 	}
 	
@@ -97,8 +97,8 @@ public abstract class RuleGame extends Collegue implements StrategyRule, Subject
 	 */
 	public void makeCellAlive(int i, int j) throws InvalidParameterException {
 		if(validPosition(i, j)) {
-			cells[i][j].revive();
-			notifyObservers(CellState.REVIVE);
+			cells[i][j].aliveCell();
+			notifyObservers(CellState.REVIVED);
 		}
 		else {
 			new InvalidParameterException("Invalid position (" + i + ", " + j + ")" );

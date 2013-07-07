@@ -27,6 +27,10 @@ public abstract class Collegue {
 		return mediator.isCellAlive(i, j);
 	}
 	
+	protected String cellViewInfo(int i, int j){
+		return mediator.getCellVI(i, j);
+	}
+	
 	public boolean validPositionH(int a) {
 		return a >= 0 && a < getHeight();
 	}

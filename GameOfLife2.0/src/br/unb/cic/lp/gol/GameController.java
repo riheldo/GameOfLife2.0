@@ -74,7 +74,6 @@ public class GameController {
 		
 		try {
 			engine.getStrategyRG().makeCellAlive(i, j);
-			board.update();
 		}
 		catch(InvalidParameterException e) {
 			board.showError(e.getMessage());

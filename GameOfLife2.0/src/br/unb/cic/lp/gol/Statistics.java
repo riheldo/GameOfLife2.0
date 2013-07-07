@@ -36,7 +36,7 @@ public class Statistics implements Observer {
 
 	@Override
 	public void updateObserver(CellState cs) {
-		if(cs == CellState.KILL)
+		if(cs == CellState.DEAD)
 			recordKill();
 		else
 			recordRevive();

@@ -10,8 +10,6 @@ import java.util.Scanner;
  */
 public class GameView extends Collegue {
 	private static final String LINE = "+-----+";
-	private static final String DEAD_CELL = "|     |";
-	private static final String ALIVE_CELL = "|  o  |";
 	
 	private static final int INVALID_OPTION = 0;
 	private static final int MAKE_CELL_ALIVE = 1;
@@ -36,7 +34,7 @@ public class GameView extends Collegue {
 		printLine();
 		for (int i = 0; i < getHeight(); i++) {
 			for (int j = 0; j < getWidth(); j++) {
-				System.out.print(isCellAlive(i, j) ? ALIVE_CELL : DEAD_CELL);
+				System.out.print(cellViewInfo(i, j));
 			}
 			System.out.println("   " + i);
 			printLine();
@@ -69,26 +67,6 @@ public class GameView extends Collegue {
 	}
 	
 	
-	/*
-	 * tirar metodo e distribuir em outros dois, putCellinRow() e putCellinCollumn()
-	 * */
-//	private void makeCellAlive() {
-//		int i, j = 0;
-//		Scanner s = new Scanner(System.in);
-//		
-//		do {
-//			System.out.print("\n Inform the row number (0 - " + engine.getHeight() + "): " );
-//			
-//			i = s.nextInt();
-//			
-//			System.out.print("\n Inform the column number (0 - " + engine.getWidth() + "): " );
-//			
-//			j = s.nextInt();
-//		}while(!validPosition(i,j));
-//		
-//		controller.makeCellAlive(i, j);
-//	}
-	
 	public int putCellinRow(){
 		int i = 0;
 		Scanner s = new Scanner(System.in);
@@ -113,11 +91,7 @@ public class GameView extends Collegue {
 		
 		return j;
 	}
-	
-//	private boolean validPosition(int i, int j) {
-//		System.out.println(i);
-//		return i >= 0 && i < getHeight() && j >= 0 && j < getWidth();
-//	}
+
 
 	private int parseOption(String option) {
 		if(option.equals("1")) {

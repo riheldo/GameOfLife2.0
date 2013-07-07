@@ -30,6 +30,10 @@ public class ConcretMediatorEngView implements IMediatorEngView{
 		return this.width;
 	}
 	
+	public String getCellVI(int i, int j){
+		return cells[i][j].getSimbollCell();
+	}
+	
 	/**
 	 * Verifica se uma celula na posicao (i, j) estah viva.
 	 * 
