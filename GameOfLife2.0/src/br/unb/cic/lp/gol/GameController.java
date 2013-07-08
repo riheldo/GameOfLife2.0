@@ -14,6 +14,7 @@ public class GameController {
 	private GameEngine engine;
 	private GameView board;
 	private Statistics statistics;
+	private boolean end;
 	
 	public void setConfig(GameEngine engine, GameView view, Statistics statistic){
 		setEngine(engine);
@@ -42,7 +43,7 @@ public class GameController {
 	}
 	
 	public void start() {
-		board.setEnd(false);
+		end = false;
 		run();
 	}
 	
@@ -50,13 +51,14 @@ public class GameController {
 	//comeca
 	private void run(){
 		MenuOptions opcaoMenu;
-		while(!board.getEnd()){
+		while(!end){
 			board.update();
 			
 			opcaoMenu = board.printOptions();
 			switch(opcaoMenu) {
 				case MAKE_CELL_ALIVE : makeCellAlive(); break;
 				case NEXT_GENERATION : nextGeneration(); break;
+				case UNDO : undo(); break;
 				case HALT : halt(); break;
 			}
 		}
@@ -65,7 +67,7 @@ public class GameController {
 	public void halt() {
 		//oops, nao muito legal fazer sysout na classe Controller e na classe statistic
 		board.printStatistics(statistics.getRevivedCells(), statistics.getKilledCells());
-		board.setEnd(true);
+		end = true;
 	}
 	
 	public void makeCellAlive() {
@@ -82,6 +84,10 @@ public class GameController {
 	
 	public void nextGeneration() {
 		engine.nextGeneration();
+	}
+	
+	private void undo(){
+		engine.undoGame();
 	}
 	
 }

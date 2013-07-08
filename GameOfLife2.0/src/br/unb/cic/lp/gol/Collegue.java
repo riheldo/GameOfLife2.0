@@ -7,6 +7,10 @@ public abstract class Collegue {
 		this.mediator = mediator;
 	}
 	
+	protected ConcretMediatorEngView getMediator(){
+		return mediator;
+	}
+	
 	protected void setHeight(int height){
 		mediator.setHeight(height);
 	}
@@ -31,11 +35,11 @@ public abstract class Collegue {
 		return mediator.getCellVI(i, j);
 	}
 	
-	public boolean validPositionH(int a) {
+	protected boolean validPositionH(int a) {
 		return a >= 0 && a < getHeight();
 	}
 	
-	public boolean validPositionW(int b) {
+	protected boolean validPositionW(int b) {
 		return b >= 0 && b < getWidth();
 	}
 }

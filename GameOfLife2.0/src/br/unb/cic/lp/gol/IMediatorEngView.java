@@ -8,4 +8,5 @@ public interface IMediatorEngView {
 	
 	public boolean isCellAlive(int i, int j);
 	public void setCell(Cell[][] cell);
+	public Cell[][] getCells();
 }

@@ -30,6 +30,11 @@ public class ConcretMediatorEngView implements IMediatorEngView{
 		return this.width;
 	}
 	
+	@Override
+	public Cell[][] getCells() {
+		return cells;
+	}
+	
 	public String getCellVI(int i, int j){
 		return cells[i][j].getSimbollCell();
 	}

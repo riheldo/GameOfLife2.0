@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RuleGame extends Collegue implements StrategyRule, Subject{
-	protected Cell[][] cells;
 	private ArrayList<Observer> observers;
+	private Caretaker caretaker;
 	
 	
 	public RuleGame(ConcretMediatorEngView mediator) {
 		super(mediator);
 		
-		this.cells = new Cell[getHeight()][getWidth()];
+		caretaker = new Caretaker();
+		
+		Cell[][] cells = new Cell[getHeight()][getWidth()];
 		mediator.setCell(cells);
 		
 		for (int i = 0; i < getHeight(); i++) {
@@ -63,15 +65,17 @@ public abstract class RuleGame extends Collegue implements StrategyRule, Subject
 	 * c) em todos os outros casos a celula morre ou continua morta.
 	 */
 	public final void nextGeneration() {
+		saveState();
+		
 		List<Cell> mustRevive = new ArrayList<Cell>();
 		List<Cell> mustKill = new ArrayList<Cell>();
 		for (int i = 0; i < getHeight(); i++) {
 			for (int j = 0; j < getWidth(); j++) {
 				if (shouldRevive(i, j)) {
-					mustRevive.add(cells[i][j]);
+					mustRevive.add(getMediator().getCells()[i][j]);
 				} 
-				else if ((!shouldKeepAlive(i, j)) && cells[i][j].isAlive()) {
-					mustKill.add(cells[i][j]);
+				else if ((!shouldKeepAlive(i, j)) && getMediator().getCells()[i][j].isAlive()) {
+					mustKill.add(getMediator().getCells()[i][j]);
 				}
 			}
 		}
@@ -87,6 +91,30 @@ public abstract class RuleGame extends Collegue implements StrategyRule, Subject
 		}
 	}
 	
+	private void saveState() {
+		Originator orig = new Originator((Statistics) observers.get(0), getMediator().getCells(), getHeight(), getWidth());
+		caretaker.addNewMemento(orig.getNewMemento());
+	}
+	
+	public void undoGame(){
+		Memento lastMemento = caretaker.getLastMemento(); 
+		
+		if(lastMemento != null){
+			loadSavedState(lastMemento.getSavedCellsStates());
+			
+			observers.remove(0);
+			observers.add(lastMemento.getSavedStatistic());
+		}
+	}
+
+	private void loadSavedState(ICellState[][] savedCellsStates) {
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getWidth(); j++) {
+				getMediator().getCells()[i][j].setCellState(savedCellsStates[i][j]);
+			}
+		}
+	}
+
 	/**
 	 * Torna a celula de posicao (i, j) viva
 	 * 
@@ -97,7 +125,7 @@ public abstract class RuleGame extends Collegue implements StrategyRule, Subject
 	 */
 	public void makeCellAlive(int i, int j) throws InvalidParameterException {
 		if(validPosition(i, j)) {
-			cells[i][j].aliveCell();
+			getMediator().getCells()[i][j].aliveCell();
 			notifyObservers(CellState.REVIVED);
 		}
 		else {
@@ -133,7 +161,7 @@ public abstract class RuleGame extends Collegue implements StrategyRule, Subject
 		int alive = 0;
 		for (int a = i - 1; a <= i + 1; a++) {
 			for (int b = j - 1; b <= j + 1; b++) {
-				if (validPosition(a, b)  && (!(a==i && b == j)) && cells[a][b].isAlive()) {
+				if (validPosition(a, b)  && (!(a==i && b == j)) && getMediator().getCells()[a][b].isAlive()) {
 					alive++;
 				}
 			}

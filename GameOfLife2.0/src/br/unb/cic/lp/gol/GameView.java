@@ -14,9 +14,8 @@ public class GameView extends Collegue {
 	private static final int INVALID_OPTION = 0;
 	private static final int MAKE_CELL_ALIVE = 1;
 	private static final int NEXT_GENERATION = 2;
-	private static final int HALT = 3; 
-	
-	private boolean end;
+	private static final int HALT = 4;
+	private static final int UNDO = 3;
 
 	/**
 	 * Construtor da classe GameBoard
@@ -42,6 +41,7 @@ public class GameView extends Collegue {
 	}
 
 	public MenuOptions printOptions() {
+		@SuppressWarnings("resource")
 		Scanner s = new Scanner(System.in);
 		
 		int option;
@@ -51,7 +51,8 @@ public class GameView extends Collegue {
 			System.out.println("Select one of the options: \n \n"); 
 			System.out.println("[1] Make a cell alive");
 			System.out.println("[2] Next generation");
-			System.out.println("[3] Halt");
+			System.out.println("[3] Undo");
+			System.out.println("[4] Halt");
 		
 			System.out.print("\n \n Option: ");
 			
@@ -61,6 +62,7 @@ public class GameView extends Collegue {
 		switch(option) {
 			case MAKE_CELL_ALIVE : return MenuOptions.MAKE_CELL_ALIVE;
 			case NEXT_GENERATION : return MenuOptions.NEXT_GENERATION;
+			case UNDO : return MenuOptions.UNDO;
 			case HALT : return MenuOptions.HALT;
 		}
 		return null;
@@ -69,6 +71,7 @@ public class GameView extends Collegue {
 	
 	public int putCellinRow(){
 		int i = 0;
+		@SuppressWarnings("resource")
 		Scanner s = new Scanner(System.in);
 		
 		do{
@@ -81,6 +84,7 @@ public class GameView extends Collegue {
 	
 	public int putCellinColumn(){
 		int j = 0;
+		@SuppressWarnings("resource")
 		Scanner s = new Scanner(System.in);
 		
 		do{
@@ -101,6 +105,9 @@ public class GameView extends Collegue {
 			return NEXT_GENERATION;
 		}
 		else if (option.equals("3")) {
+			return UNDO;
+		}
+		else if (option.equals("4")) {
 			return HALT;
 		}
 		else return INVALID_OPTION;
@@ -133,14 +140,6 @@ public class GameView extends Collegue {
 		System.out.println("Revived cells: " + revivedCells);
 		System.out.println("Killed cells: " + killedCells);
 		System.out.println("=================================");
-	}
-	
-	public void setEnd(boolean end){
-		this.end = end;
-	}
-	
-	public boolean getEnd(){
-		return this.end;
 	}
 
 	public void showError(String message) {

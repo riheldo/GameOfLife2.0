@@ -53,5 +53,15 @@ public class Cell implements ICellState{
 	public ICellState getRevivedCell(){
 		return this.revivedCell;
 	}
+	
+	public Cell clone(){
+		Cell newCell = new Cell();
+		newCell.setCellState(actualCellState);
+		return newCell;
+	}
+	
+	public ICellState getActualCellState(){
+		return actualCellState;
+	}
 
 }

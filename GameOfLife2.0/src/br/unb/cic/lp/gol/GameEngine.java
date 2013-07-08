@@ -36,5 +36,9 @@ public class GameEngine{
 	public RuleGame getStrategyRG(){
 		return ((RuleGame)strategy);
 	}
+	
+	public void undoGame(){
+		((RuleGame) strategy).undoGame();
+	}
 
 }

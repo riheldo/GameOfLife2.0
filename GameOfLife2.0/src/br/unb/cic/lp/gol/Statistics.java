@@ -41,5 +41,15 @@ public class Statistics implements Observer {
 		else
 			recordRevive();
 	}
+	
+	public Statistics clone(){
+		Statistics newStatistic = new Statistics();
+		for(int i = 0; i < newStatistic.getKilledCells(); i++)
+			newStatistic.recordKill();
+		for(int j = 0; j < newStatistic.getRevivedCells(); j++)
+			newStatistic.recordRevive();
+		
+		return newStatistic;
+	}
 
 }
