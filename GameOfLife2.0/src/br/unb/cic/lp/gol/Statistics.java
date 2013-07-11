@@ -52,11 +52,10 @@ public class Statistics implements Observer {
 	
 	public Statistics clone(){
 		Statistics newStatistic = new Statistics();
-		for(int i = 0; i < newStatistic.getKilledCells(); i++)
+		for(int i = 0; i < killedCells; i++)
 			newStatistic.recordKill();
-		for(int j = 0; j < newStatistic.getRevivedCells(); j++)
+		for(int j = 0; j < revivedCells; j++)
 			newStatistic.recordRevive();
-		
 		return newStatistic;
 	}
 

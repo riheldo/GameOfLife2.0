@@ -6,6 +6,7 @@ public class Memento {
 	
 	public Memento(Statistics newStatistic, Cell[][] oldCells, int H, int W){
 		statistica = newStatistic.clone();
+		System.out.println(newStatistic.getKilledCells() + newStatistic.getRevivedCells());
 		
 		cellsStates = new ICellState[H][W];
 		

@@ -101,7 +101,6 @@ public abstract class RuleGame extends Collegue implements StrategyRule, Subject
 		
 		if(lastMemento != null){
 			loadSavedState(lastMemento.getSavedCellsStates());
-			
 			((Statistics) observers.get(0)).setRevivedCells(lastMemento.getSavedStatistic().getRevivedCells());
 			((Statistics) observers.get(0)).setKilledCells(lastMemento.getSavedStatistic().getKilledCells());
 		}
