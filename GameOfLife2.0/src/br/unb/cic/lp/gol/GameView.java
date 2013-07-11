@@ -2,6 +2,8 @@ package br.unb.cic.lp.gol;
 
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 /**
  * Atua como um componente de apresentacao (view), exibindo o estado atual do
  * game com uma implementacao baseada em caracteres ASCII.
@@ -29,6 +31,9 @@ public class GameView extends Collegue {
 	 * possivelmente como uma resposta a uma atualiza�‹o do jogo.
 	 */
 	public void update() {
+		JFrame jframe = new JFrame();
+		
+		
 		printFirstRow();
 		printLine();
 		for (int i = 0; i < getHeight(); i++) {

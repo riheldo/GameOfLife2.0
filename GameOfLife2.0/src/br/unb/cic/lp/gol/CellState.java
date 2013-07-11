@@ -1,9 +1,9 @@
 package br.unb.cic.lp.gol;
 
 public enum CellState {
-	DEAD(0, "|     |"),
-	ALIVE(1, "|  o  |"),
-	REVIVED(2, "|  x  |");
+	DEAD(0, "      "),
+	ALIVE(1, "  o  "),
+	REVIVED(2, "  x  ");
 	
 	public final int indice;
 	public final String viewInformation;

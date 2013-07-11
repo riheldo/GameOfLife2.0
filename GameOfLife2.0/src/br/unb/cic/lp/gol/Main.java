@@ -13,7 +13,7 @@ public class Main {
 		
 		GameEngine engine = new GameEngine(mediator, statistics);	
 		
-		GameView board = new GameView(mediator);
+		View board = new View(mediator);
 		
 		controller.setConfig(engine, board, statistics);
 		

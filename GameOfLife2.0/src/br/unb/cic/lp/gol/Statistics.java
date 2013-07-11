@@ -21,6 +21,10 @@ public class Statistics implements Observer {
 	public int getRevivedCells() {
 		return revivedCells;
 	}
+	
+	public void setRevivedCells(int newRevivedCells){
+		revivedCells = newRevivedCells;
+	}
 
 	public void recordRevive() {
 		this.revivedCells++;
@@ -28,6 +32,10 @@ public class Statistics implements Observer {
 
 	public int getKilledCells() {
 		return killedCells;
+	}
+	
+	public void setKilledCells(int newKilledCells){
+		killedCells = newKilledCells;
 	}
 
 	public void recordKill() {
