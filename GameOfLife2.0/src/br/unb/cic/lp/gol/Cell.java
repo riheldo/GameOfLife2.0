@@ -3,14 +3,14 @@ package br.unb.cic.lp.gol;
 public class Cell implements ICellState{
 	private ICellState aliveCell;
 	private ICellState deadCell;
-	private ICellState revivedCell;
+//	private ICellState revivedCell;
 	
 	private ICellState actualCellState;
 	
 	public Cell(){
 		aliveCell = new AliveCell(this);
 		deadCell = new DeadCell(this);
-		revivedCell = new RevivedCell(this);
+//		revivedCell = new RevivedCell(this);
 		
 		actualCellState = new DeadCell(this);
 	}
@@ -50,9 +50,9 @@ public class Cell implements ICellState{
 	public ICellState getDeadCell(){
 		return this.deadCell;
 	}
-	public ICellState getRevivedCell(){
-		return this.revivedCell;
-	}
+//	public ICellState getRevivedCell(){
+//		return this.revivedCell;
+//	}
 	
 	public Cell clone(){
 		Cell newCell = new Cell();

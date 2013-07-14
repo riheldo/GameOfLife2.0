@@ -25,7 +25,7 @@ public class AliveCell implements ICellState {
 
 	@Override
 	public void reviveCell() {
-		masterCell.setCellState(masterCell.getRevivedCell());
+		masterCell.setCellState(masterCell.getAliveCell());
 	}
 	
 	public boolean isAlive(){
